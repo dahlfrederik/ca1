@@ -20,12 +20,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 //Uncomment the line below, to temporarily disable this test
-@Disabled
+//@Disabled
 public class MembersResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
-    private static Members r1,r2;
+    private static Members m1,m2, m3;
     
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -62,15 +62,17 @@ public class MembersResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new Members("Some txt","More text");
-        r2 = new Members("aaa","bbb");
+        m1 = new Members("Frederik Dahl", "Greys hvide verden");
+        m2 = new Members("Josef Marc", "Vikings");
+        m3 = new Members("Thor Christensen", "GOT");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(r1);
-            em.persist(r2); 
+            em.createNamedQuery("Members.deleteAllRows").executeUpdate();
+            em.persist(m1);
+            em.persist(m2);
+            em.persist(m3);
             em.getTransaction().commit();
-        } finally { 
+        } finally {
             em.close();
         }
     }
@@ -78,27 +80,25 @@ public class MembersResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/xxx").then().statusCode(200);
-    }
-   
-    //This test assumes the database contains two rows
-    @Test
-    public void testDummyMsg() throws Exception {
-        given()
-        .contentType("application/json")
-        .get("/xxx/").then()
-        .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("msg", equalTo("Hello World"));   
+        given().when().get("/groupmembers/all").then().statusCode(200);
     }
     
     @Test
-    public void testCount() throws Exception {
+    public void testGetAllMembers() throws Exception {
         given()
-        .contentType("application/json")
-        .get("/xxx/count").then()
-        .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("count", equalTo(2));   
+                .contentType("application/json")
+                .get("/groupmembers/all").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode());
+    }
+    
+    @Test
+    public void testSpecificName() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/groupmembers/name/Frederik Dahl").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("name", equalTo(m1.getName()));
     }
 }

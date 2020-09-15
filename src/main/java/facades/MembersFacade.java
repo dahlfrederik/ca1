@@ -30,10 +30,10 @@ public class MembersFacade {
         return emf.createEntityManager();
     }
     
-        public MembersDTO getMovieById(long id) {
+        public MembersDTO getMemberById(long id) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createQuery("Member.getById");
+            Query query2 = em.createNamedQuery("Members.getById");
             query2.setParameter("id", id);
             Members members = (Members) query2.getSingleResult();
             MembersDTO memDTO = new MembersDTO(members);
@@ -43,10 +43,10 @@ public class MembersFacade {
         }
     }
         
-    public MembersDTO getMovieByName(String name) {
+    public MembersDTO getMemberByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createQuery("Members.getByName");
+            Query query2 = em.createNamedQuery("Members.getByName");
             query2.setParameter("name", name);
             Members members = (Members) query2.getSingleResult();
             MembersDTO memDTO = new MembersDTO(members);
@@ -56,10 +56,10 @@ public class MembersFacade {
         }
     }
     
-        public List<MembersDTO> getAllMovies() {
+        public List<MembersDTO> getAllMembers() {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createQuery("Members.getAll");
+            Query query2 = em.createNamedQuery("Members.getAll");
             List<Members> memberList = query2.getResultList();
             List<MembersDTO> memberDTOList = new ArrayList();
             for (Members member : memberList) {
@@ -68,6 +68,19 @@ public class MembersFacade {
             }
             return memberDTOList;
             
+        } finally {
+            em.close();
+        }
+    }
+        
+    public void populateDB() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(new Members("Frederik Dahl", "Greys hvide verden"));
+            em.persist(new Members("Josef Marc", "Vikings"));
+            em.persist(new Members("Thor Christensen", "GOT"));
+            em.getTransaction().commit();
         } finally {
             em.close();
         }
