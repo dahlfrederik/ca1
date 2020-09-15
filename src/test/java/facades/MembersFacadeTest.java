@@ -1,7 +1,7 @@
 package facades;
 
 import utils.EMF_Creator;
-import entities.RenameMe;
+import entities.Members;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -9,22 +9,23 @@ import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
-//@Disabled
-public class FacadeExampleTest {
+@Disabled
+public class MembersFacadeTest {
 
     private static EntityManagerFactory emf;
-    private static FacadeExample facade;
+    private static MembersFacade facade;
 
-    public FacadeExampleTest() {
+    public MembersFacadeTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = FacadeExample.getFacadeExample(emf);
+       facade = MembersFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -37,12 +38,15 @@ public class FacadeExampleTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
+        Members m1 = new Members("Frederik Dahl", "J.K Rowling");
+        Members m2 = new Members("Star Wars", "George Lucas");
+        Members m3 = new Members("Once apon a time in Holly Wood", "Tarentino");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
-
+            em.createNamedQuery("Member.deleteAllRows").executeUpdate();
+            em.persist(m1);
+            em.persist(m2);
+            em.persist(m3);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -54,10 +58,6 @@ public class FacadeExampleTest {
 //        Remove any data after each test was run
     }
 
-    // TODO: Delete or change this method 
-    @Test
-    public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
-    }
+
 
 }
