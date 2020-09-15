@@ -11,10 +11,10 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Member.deleteAllRows", query = "DELETE from Member"),
-@NamedQuery(name = "Member.getAll", query = "SELECT m FROM Member m"),
-@NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE CONCAT('%',:name,'%')"),
-@NamedQuery(name = "Member.getById", query = "SELECT m FROM Member m WHERE m.id = :id")
+@NamedQuery(name = "Members.deleteAllRows", query = "DELETE from Members"),
+@NamedQuery(name = "Members.getAll", query = "SELECT m FROM Members m"),
+@NamedQuery(name = "Members.getByName", query = "SELECT m FROM Members m WHERE m.name LIKE CONCAT('%',:name,'%')"),
+@NamedQuery(name = "Members.getById", query = "SELECT m FROM Members m WHERE m.id = :id")
 })
 public class Members implements Serializable {
 

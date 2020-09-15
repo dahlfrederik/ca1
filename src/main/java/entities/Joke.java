@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
+@NamedQuery(name = "Joke.deleteAllRows", query = "DELETE from Joke"),
 @NamedQuery(name = "Joke.getAll", query = "SELECT j FROM Joke j"),
 @NamedQuery(name = "Joke.getJokeById", query = "SELECT j FROM Joke j WHERE j.id LIKE :id")
 })

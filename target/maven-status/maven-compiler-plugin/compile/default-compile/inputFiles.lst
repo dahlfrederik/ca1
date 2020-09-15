@@ -1,7 +1,11 @@
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\dto\MembersDTO.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\entities\Members.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\rest\ApplicationConfig.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\rest\MemberResource.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\rest\TestResource.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\facades\MembersFacade.java
-C:\Users\thorc\OneDrive\Dokumenter\NetBeansProjects\ca1\ca1\src\main\java\utils\EMF_Creator.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\entities\Joke.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\entities\Members.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\utils\EMF_Creator.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\dto\JokeDTO.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\facades\JokeFacade.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\facades\MembersFacade.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\JokeResource.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\MemberResource.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\dto\MembersDTO.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\TestResource.java
+C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\ApplicationConfig.java

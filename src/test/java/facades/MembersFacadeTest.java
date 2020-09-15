@@ -43,7 +43,7 @@ public class MembersFacadeTest {
         Members m3 = new Members("Once apon a time in Holly Wood", "Tarentino");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Member.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Members.deleteAllRows").executeUpdate();
             em.persist(m1);
             em.persist(m2);
             em.persist(m3);

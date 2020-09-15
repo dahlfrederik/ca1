@@ -1,9 +1,10 @@
 dto\MembersDTO.class
+entities\ghy636765\Members_.class
+facades\MembersFacade.class
+dto\JokeDTO.class
 rest\TestResource.class
 rest\MemberResource.class
 entities\Members.class
 rest\ApplicationConfig.class
-entities\ghy636765\Members_.class
-facades\MembersFacade.class
 entities\xx345y657\Members_.class
 utils\EMF_Creator.class

@@ -1,5 +1,6 @@
 package facades;
 
+import dto.JokeDTO;
 import entities.Joke;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -46,27 +47,49 @@ public class JokeFacade {
         } finally {
             em.close();
         }
-
     }
 
-    public List<Joke> getAllJoke() {
+    public List<JokeDTO> getAllJoke() {
         EntityManager em = emf.createEntityManager();
         try {
-            TypedQuery<Joke> query
-                    = em.createQuery("Select m from Movie m", Joke.class);
+            TypedQuery<JokeDTO> query
+                    = (TypedQuery<JokeDTO>) em.createNamedQuery("Joke.getAll");
             return query.getResultList();
         } finally {
             em.close();
         }
     }
 
-    public Joke getMovieById(Long id) {
+    public Joke getJokeById(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createQuery("Joke.getJokeById");
+            Query query = em.createNamedQuery("Joke.getJokeById");
             query.setParameter("id", id);
             Joke joke = (Joke) query.getSingleResult();
             return joke;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void deleteAllJokes(){
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void populateDB(){
+            EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(new Joke("En sjov joke", "person", "Sjovt"));
+            em.persist(new Joke("En anden sjov joke", "Sjov person", "Sjovt"));
+            em.getTransaction().commit();
         } finally {
             em.close();
         }
