@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class CarFacadeTest {
+public class CarFacadeTest2 {
 
     private static EntityManagerFactory emf;
     private static CarFacade cf;
 
-    public CarFacadeTest() {
+    public CarFacadeTest2() {
     }
 
     @BeforeAll
