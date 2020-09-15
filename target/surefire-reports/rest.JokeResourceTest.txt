@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: rest.JokeResourceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.804 s - in rest.JokeResourceTest
