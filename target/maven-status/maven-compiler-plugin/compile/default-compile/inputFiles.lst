@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\entities\Joke.java
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\entities\Members.java
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\utils\EMF_Creator.java
@@ -9,3 +10,14 @@ C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\MemberReso
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\dto\MembersDTO.java
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\TestResource.java
 C:\Users\josef\Desktop\Afleveringer\Uge 38\CA1\ca1\src\main\java\rest\ApplicationConfig.java
+=======
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/rest/TestResource.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/facades/FacadeExample.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/entities/RenameMe.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/rest/CarResource.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/facades/CarFacade.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/dto/CarDTO.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/utils/EMF_Creator.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/rest/ApplicationConfig.java
+/Users/FrederikDahl/Dropbox/CPH Business/3 semester/3sem_week38/ca1/src/main/java/entities/Car.java
+>>>>>>> cars
