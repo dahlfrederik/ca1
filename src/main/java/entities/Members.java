@@ -27,6 +27,13 @@ public class Members implements Serializable {
     
     public Members() {
     }
+
+    public Members(String name, String favTvShow) {
+        this.name = name;
+        this.favTvShow = favTvShow;
+    }
+    
+    
         
     public Long getId() {
         return id;

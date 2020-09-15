@@ -1,2 +1,2 @@
-rest/RenameMeResourceTest.class
-facades/FacadeExampleTest.class
+rest\MembersResourceTest.class
+facades\MembersFacadeTest.class
