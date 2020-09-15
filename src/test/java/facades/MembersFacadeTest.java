@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
-@Disabled
+//@Disabled
 public class MembersFacadeTest {
 
     private static EntityManagerFactory emf;
@@ -38,9 +38,9 @@ public class MembersFacadeTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        Members m1 = new Members("Frederik Dahl", "J.K Rowling");
-        Members m2 = new Members("Star Wars", "George Lucas");
-        Members m3 = new Members("Once apon a time in Holly Wood", "Tarentino");
+        Members m1 = new Members("Frederik Dahl", "Greys hvide verden");
+        Members m2 = new Members("Josef Marc", "Vikings");
+        Members m3 = new Members("Thor Christensen", "GOT");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Members.deleteAllRows").executeUpdate();
@@ -57,6 +57,25 @@ public class MembersFacadeTest {
     public void tearDown() {
 //        Remove any data after each test was run
     }
+    
+    @Test
+    public void testGetMemberByName() {
+        MembersFacade mf = MembersFacade.getFacadeExample(emf);
+        String name = "Frederik Dahl";
+        String expResult = "Frederik Dahl";
+        String result = mf.getMemberByName(name).getName();
+
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testgetAllMembers() {
+        MembersFacade mf = MembersFacade.getFacadeExample(emf);
+        int expResult = 3;
+        int result = mf.getAllMembers().size();
+        assertEquals(expResult, result);
+    }
+        
 
 
 

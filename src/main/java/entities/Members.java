@@ -33,8 +33,6 @@ public class Members implements Serializable {
         this.favTvShow = favTvShow;
     }
     
-    
-        
     public Long getId() {
         return id;
     }

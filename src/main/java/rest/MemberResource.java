@@ -33,7 +33,7 @@ public class MemberResource {
         EntityManager em = EMF.createEntityManager();
         try {
             MembersFacade mf = MembersFacade.getFacadeExample(EMF);
-            List<MembersDTO> membersList = mf.getAllMovies();
+            List<MembersDTO> membersList = mf.getAllMembers();
             return GSON.toJson(membersList);
         } finally {
             em.close();
@@ -47,7 +47,7 @@ public class MemberResource {
         EntityManager em = EMF.createEntityManager();
         try {
             MembersFacade mf = MembersFacade.getFacadeExample(EMF);
-            MembersDTO dtoMov = mf.getMovieById(id);
+            MembersDTO dtoMov = mf.getMemberById(id);
             return GSON.toJson(dtoMov);
         } finally {
             em.close();
@@ -61,11 +61,19 @@ public class MemberResource {
         EntityManager em = EMF.createEntityManager();
         try {
             MembersFacade mf = MembersFacade.getFacadeExample(EMF);
-            MembersDTO dtoMem = mf.getMovieByName(name);
+            MembersDTO dtoMem = mf.getMemberByName(name);
             return GSON.toJson(dtoMem);
         } finally {
             em.close();
         }
+    }
+    
+    @GET
+    @Path("/populate")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String populate(){
+        FACADE.populateDB();
+        return "{\"msg\":\"Group members added\"}";
     }
 
 }
