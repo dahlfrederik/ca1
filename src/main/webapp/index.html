@@ -31,22 +31,36 @@
         
         <div class="container-fluid padding">
             <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <div id="membersTable">Table here</div>
+                <div class="col-3"></div>
+                <div class="col-6 d-flex justify-content-center">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Name:</th>
+                                <th class="text-center">ID:</th>
+                                <th class="text-center">Favorite tv show:</th>
+                            </tr>
+                        </thead>
+                        <tbody id="members"></tbody>
+                    </table>
                 </div>
+                <div class="col-3"></div>
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <input id="submitMemberNames" type="submit" value="Reload names">
+                    <botton class="btn btn-success mb-5" id="loadMembers">Load members</botton>
                 </div>
             </div>
+            
+            <!-- Option for adding feature to search member by name
             <div class="row">
                 <div class="col-12 d-flex justify-content-center mt-2">
                     <input class="mr-2" id="memberName" type="text" name="memberName">
                     <input id="getMemberByName" type="submit" value="Get member by name">
 
                 </div>
-            </div> 
+            </div>
+            -->
      
         <div class="container-fluid padding">
             <div class="row">    
@@ -65,6 +79,31 @@
                 </div>
             </div>
         </div>
+            
+            <script>
+                var url = "api/members/all";
+
+            getAll.onclick = function () {
+
+                fetch(url)
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(data => loadAll(data));
+                console.log("data", data);
+            };
+
+            function loadAll(data) {
+                var table = document.getElementById("members");
+                table.innerHTML = "";
+                var tr = "";
+                data.forEach(x => {
+                    tr += '<tr>';
+                    tr += '<td>' + x.name + '</td>' + '<td>' + x.id + '</td>' + '<td>' + x.favTvShow + '</td>';
+                    tr += '</tr>';
+                });
+                table.innerHTML += tr;
+                
+            }
+                </script>
         
         
     </body>
