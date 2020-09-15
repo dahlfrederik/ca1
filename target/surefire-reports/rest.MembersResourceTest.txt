@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
-<<<<<<< HEAD:target/surefire-reports/rest.MembersResourceTest.txt
 Test set: rest.MembersResourceTest
 -------------------------------------------------------------------------------
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.437 s - in rest.MembersResourceTest
-=======
-Test set: rest.CarResourceTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.608 s - in rest.CarResourceTest
->>>>>>> cars:target/surefire-reports/rest.CarResourceTest.txt

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 dto\MembersDTO.class
 entities\ghy636765\Members_.class
 facades\MembersFacade.class
@@ -9,18 +8,3 @@ entities\Members.class
 rest\ApplicationConfig.class
 entities\xx345y657\Members_.class
 utils\EMF_Creator.class
-=======
-rest/CarResource.class
-utils/EMF_Creator.class
-entities/Car.class
-entities/ghy636765/Car_.class
-entities/xx345y657/Car_.class
-rest/TestResource.class
-entities/RenameMe.class
-facades/FacadeExample.class
-facades/CarFacade.class
-entities/ghy636765/RenameMe_.class
-entities/xx345y657/RenameMe_.class
-rest/ApplicationConfig.class
-dto/CarDTO.class
->>>>>>> cars

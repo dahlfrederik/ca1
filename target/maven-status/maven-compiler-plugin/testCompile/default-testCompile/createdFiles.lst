@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 rest\MembersResourceTest.class
 facades\MembersFacadeTest.class
-=======
-rest/CarResourceTest.class
-facades/CarFacadeTest.class
->>>>>>> cars
