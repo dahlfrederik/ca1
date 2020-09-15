@@ -1,8 +1,13 @@
-entities/xx345y657/RenameMe_.class
+rest/CarResource.class
 utils/EMF_Creator.class
-rest/RenameMeResource.class
+entities/Car.class
+entities/ghy636765/Car_.class
+entities/xx345y657/Car_.class
 rest/TestResource.class
 entities/RenameMe.class
 facades/FacadeExample.class
-rest/ApplicationConfig.class
+facades/CarFacade.class
 entities/ghy636765/RenameMe_.class
+entities/xx345y657/RenameMe_.class
+rest/ApplicationConfig.class
+dto/CarDTO.class

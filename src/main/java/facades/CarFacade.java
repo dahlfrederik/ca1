@@ -36,7 +36,7 @@ public class CarFacade {
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static CarFacade getFacadeExample(EntityManagerFactory _emf) {
+    public static CarFacade getCarFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new CarFacade();
@@ -62,7 +62,7 @@ public class CarFacade {
     public List<CarDTO> getAllCars() {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createNamedQuery("Movie.getAll");
+            Query query2 = em.createNamedQuery("Car.getAll");
 
             List<Car> carList = query2.getResultList();
             List<CarDTO> carDTOList = new ArrayList();

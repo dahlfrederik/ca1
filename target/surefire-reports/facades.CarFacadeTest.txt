@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: rest.RenameMeResourceTest
+Test set: facades.CarFacadeTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.44 s - in rest.RenameMeResourceTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.469 s - in facades.CarFacadeTest

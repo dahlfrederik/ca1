@@ -1,5 +1,7 @@
 package facades;
 
+import dto.CarDTO;
+import entities.Car;
 import utils.EMF_Creator;
 import entities.RenameMe;
 import javax.persistence.EntityManager;
@@ -13,18 +15,18 @@ import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class FacadeExampleTest {
+public class CarFacadeTest {
 
     private static EntityManagerFactory emf;
-    private static FacadeExample facade;
+    private static CarFacade cf;
 
-    public FacadeExampleTest() {
+    public CarFacadeTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = FacadeExample.getFacadeExample(emf);
+       cf = CarFacade.getCarFacade(emf);
     }
 
     @AfterAll
@@ -32,6 +34,10 @@ public class FacadeExampleTest {
 //        Clean up database after test is done or use a persistence unit with drop-and-create to start up clean on every test
     }
 
+    
+    //int year, String make, String model, int price, String owner
+    
+    
     // Setup the DataBase in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the script below to use YOUR OWN entity class
     @BeforeEach
@@ -39,9 +45,14 @@ public class FacadeExampleTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
+            em.createNamedQuery("Car.deleteAllRows").executeUpdate();
+            Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik");
+            Car c2 = new Car(2008, "Renualt","Megane", 200, "Josef"); 
+            Car c3 = new Car(2008, "Fiat","Punto", 10000, "Thor");
+            em.persist(c1);
+            em.persist(c2);
+            em.persist(c3);
+            
 
             em.getTransaction().commit();
         } finally {
@@ -54,10 +65,21 @@ public class FacadeExampleTest {
 //        Remove any data after each test was run
     }
 
-    // TODO: Delete or change this method 
+    
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        assertEquals(3, cf.getAllCars().size(), "Expects three rows in the database");
     }
+    
+    @Test
+    public void testGetCarByMake(){
+        CarDTO car = cf.getCarByMake("BMW"); 
+        Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik"); 
+        CarDTO expected = new CarDTO(c1); 
+        
+        assertEquals(expected.getMake(), car.getMake()); 
+        
+    }
+    
 
 }

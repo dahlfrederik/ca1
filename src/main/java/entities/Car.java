@@ -20,10 +20,10 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Cars.deleteAllRows", query = "DELETE from Cars"),
-@NamedQuery(name = "Cars.getAll", query = "SELECT m from Cars m"),
-@NamedQuery(name = "Cars.getCarByMake", query = "SELECT m from Cars m WHERE m.make LIKE :make"),
-@NamedQuery(name = "Cars.getCarById", query = "SELECT m from Cars m WHERE m.id LIKE :id"),
+@NamedQuery(name = "Car.deleteAllRows", query = "DELETE from Car"),
+@NamedQuery(name = "Car.getAll", query = "SELECT c from Car c"),
+@NamedQuery(name = "Car.getCarByMake", query = "SELECT c from Car c WHERE c.make LIKE :make"),
+@NamedQuery(name = "Car.getCarById", query = "SELECT c from Car c WHERE c.id LIKE :id"),
 })
 public class Car implements Serializable{
     private static final long serialVersionUID = 1L;

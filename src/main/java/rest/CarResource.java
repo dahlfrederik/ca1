@@ -23,14 +23,15 @@ import utils.EMF_Creator;
  * 
  * @author Frederik Dahl <cph-fd76@cphbusiness.dk>
  */
+@Path("cars")
 public class CarResource {
     
-     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
+    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     
     //An alternative way to get the EntityManagerFactory, whithout having to type the details all over the code
     //EMF = EMF_Creator.createEntityManagerFactory(DbSelector.DEV, Strategy.CREATE);
     
-    private static final CarFacade FACADE =  CarFacade.getFacadeExample(EMF);
+    private static final CarFacade cf =  CarFacade.getCarFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     
     
@@ -39,7 +40,6 @@ public class CarResource {
     @Path("all")
     public String allCars() {
         try{
-            CarFacade cf = CarFacade.getFacadeExample(EMF); 
             List<CarDTO> carList = cf.getAllCars(); 
             return GSON.toJson(carList);
         }catch (javax.persistence.NoResultException e) {
@@ -50,10 +50,9 @@ public class CarResource {
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("byname/{make}")
+    @Path("bymake/{make}")
     public String carByMake(@PathParam("make") String make) {
         try{
-            CarFacade cf = CarFacade.getFacadeExample(EMF); 
             CarDTO car = cf.getCarByMake(make); 
                             
             return GSON.toJson(car);

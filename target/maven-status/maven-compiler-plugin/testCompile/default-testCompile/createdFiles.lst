@@ -1,2 +1,2 @@
-rest/RenameMeResourceTest.class
-facades/FacadeExampleTest.class
+rest/CarResourceTest.class
+facades/CarFacadeTest.class
