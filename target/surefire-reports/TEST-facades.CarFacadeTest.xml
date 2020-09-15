@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="rest.MembersResourceTest" time="0.925" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="facades.CarFacadeTest" time="7.536" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -58,7 +58,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testGetAllMembers" classname="rest.MembersResourceTest" time="0.148"/>
-  <testcase name="testSpecificName" classname="rest.MembersResourceTest" time="0.218"/>
-  <testcase name="testServerIsUp" classname="rest.MembersResourceTest" time="0.138"/>
+  <testcase name="testGetCarByMake" classname="facades.CarFacadeTest" time="0.317"/>
+  <testcase name="testAFacadeMethod" classname="facades.CarFacadeTest" time="0.102"/>
 </testsuite>
