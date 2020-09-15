@@ -4,7 +4,7 @@
 /nbproject/
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,macos,windows,netbeans,maven,intellij
+# Created by https://www.toptal.com/developers/gitignore/api/java,macos,windows,netbeans,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,windows,netbeans,maven,intellij
 
 ### Intellij ###
@@ -30,22 +30,6 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-# Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
-
-# Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn.  Uncomment if using
-# auto-import.
-# .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
 
 # CMake
 cmake-build-*/
@@ -163,18 +147,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-### Maven ###
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
 
 ### NetBeans ###
 **/nbproject/private/
@@ -212,4 +184,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/java,macos,windows,netbeans,maven,intellij
+# End of https://www.toptal.com/developers/gitignore/api/java,macos,windows,netbeans,intellij
