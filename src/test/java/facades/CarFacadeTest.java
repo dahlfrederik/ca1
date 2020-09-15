@@ -3,7 +3,6 @@ package facades;
 import dto.CarDTO;
 import entities.Car;
 import utils.EMF_Creator;
-import entities.RenameMe;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
