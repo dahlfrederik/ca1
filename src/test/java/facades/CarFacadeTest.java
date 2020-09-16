@@ -2,6 +2,7 @@ package facades;
 
 import dto.CarDTO;
 import entities.Car;
+import java.util.List;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -72,9 +73,10 @@ public class CarFacadeTest {
     
     @Test
     public void testGetCarByMake(){
-        CarDTO car = cf.getCarByMake("BMW"); 
+        List<CarDTO> carList = cf.getCarByMake("BMW"); 
         Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik"); 
-        CarDTO expected = new CarDTO(c1); 
+        CarDTO expected = new CarDTO(c1);
+        CarDTO car = carList.get(0); 
         
         assertEquals(expected.getMake(), car.getMake()); 
         

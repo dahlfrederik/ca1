@@ -77,15 +77,39 @@ public class CarFacade {
         }
     }
     
-     public CarDTO getCarByMake(String make) {
+     public List<CarDTO> getCarByMake(String make) {
         EntityManager em = emf.createEntityManager();
         try {
             Query query = em.createNamedQuery("Car.getCarByMake");
             query.setParameter("make", make);
-            Car car = (Car) query.getSingleResult();
-            CarDTO carDTO = new CarDTO(car); 
+            List<Car> carList = query.getResultList();
+            List<CarDTO> carDTOList = new ArrayList();
+            for(Car car : carList) {
+                CarDTO movDTO = new CarDTO(car);
+                carDTOList.add(movDTO);
+            }
+            return carDTOList;
+        } finally {
+            em.close();
+        }
+    }
+     
+    public void populateDB(){
+            EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNamedQuery("Car.deleteAllRows").executeUpdate();
+            Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik");
+            Car c2 = new Car(2008, "Renualt","Megane", 200, "Josef"); 
+            Car c3 = new Car(2008, "Fiat","Punto", 10000, "Thor");
+            Car c4 = new Car(2020, "BMW","M5", 1200000, "Frederik");
+            em.persist(c1);
+            em.persist(c2);
+            em.persist(c3);
+            em.persist(c4);
+            
 
-            return carDTO;
+            em.getTransaction().commit();
         } finally {
             em.close();
         }
