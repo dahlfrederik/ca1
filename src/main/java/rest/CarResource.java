@@ -58,6 +58,19 @@ public class CarResource {
             return GSON.toJson(errorString);
         }
     }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("byprice/{price}")
+    public String carByPrice(@PathParam("price") int price) {
+        try {
+            List<CarDTO> carList = cf.getCarByPrice(price);
+            return GSON.toJson(carList);
+        } catch (javax.persistence.NoResultException e) {
+            String errorString = "The price " + price + " is not in the database and therefore this program cannot show you the result";
+            return GSON.toJson(errorString);
+        }
+    }
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})

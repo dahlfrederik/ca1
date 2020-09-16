@@ -8,6 +8,7 @@ package facades;
 import dto.CarDTO;
 import entities.Car;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -85,14 +86,31 @@ public class CarFacade {
             List<Car> carList = query.getResultList();
             List<CarDTO> carDTOList = new ArrayList();
             for(Car car : carList) {
-                CarDTO movDTO = new CarDTO(car);
-                carDTOList.add(movDTO);
+                CarDTO carDTO = new CarDTO(car);
+                carDTOList.add(carDTO);
             }
             return carDTOList;
         } finally {
             em.close();
         }
     }
+     
+    public List<CarDTO> getCarByPrice(int price) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Car.getCarByPrice");
+            query.setParameter("price", price);
+            List<Car> carList = query.getResultList();
+            List<CarDTO> carDTOList = new ArrayList();
+            for(Car car : carList) {
+                CarDTO carDTO = new CarDTO(car);
+                carDTOList.add(carDTO);
+            }
+            return carDTOList;
+        } finally {
+            em.close();
+        }
+    }  
      
     public void populateDB(){
             EntityManager em = emf.createEntityManager();

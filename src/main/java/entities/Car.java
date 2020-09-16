@@ -23,6 +23,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Car.deleteAllRows", query = "DELETE from Car"),
 @NamedQuery(name = "Car.getAll", query = "SELECT c from Car c"),
 @NamedQuery(name = "Car.getCarByMake", query = "SELECT c from Car c WHERE c.make LIKE :make"),
+@NamedQuery(name = "Car.getCarByPrice", query = "SELECT c from Car c WHERE c.price <= :price"),
 @NamedQuery(name = "Car.getCarById", query = "SELECT c from Car c WHERE c.id LIKE :id"),
 })
 public class Car implements Serializable{

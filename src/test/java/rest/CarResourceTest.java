@@ -111,5 +111,22 @@ public class CarResourceTest {
                 .and()
                 .body(equalTo(car)); 
         }
+    
+    @Test
+    public void testGetCarPrice() throws Exception {      
+        List<CarDTO> carList = cf.getCarByPrice(200); 
+        Gson GSON  =new GsonBuilder().setPrettyPrinting().create(); 
+        String car = GSON.toJson(carList); 
+        
+        given()
+        .contentType("application/json")
+        .get("/cars/byprice/200").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("size", is(1))
+                .and()
+                .body(equalTo(car)); 
+        }
+
 
 }

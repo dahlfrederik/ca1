@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +26,8 @@ public class CarFacadeTest {
 
     @BeforeAll
     public static void setUpClass() {
-       emf = EMF_Creator.createEntityManagerFactoryForTest();
-       cf = CarFacade.getCarFacade(emf);
+        emf = EMF_Creator.createEntityManagerFactoryForTest();
+        cf = CarFacade.getCarFacade(emf);
     }
 
     @AfterAll
@@ -34,10 +35,7 @@ public class CarFacadeTest {
 //        Clean up database after test is done or use a persistence unit with drop-and-create to start up clean on every test
     }
 
-    
     //int year, String make, String model, int price, String owner
-    
-    
     // Setup the DataBase in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the script below to use YOUR OWN entity class
     @BeforeEach
@@ -46,13 +44,12 @@ public class CarFacadeTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Car.deleteAllRows").executeUpdate();
-            Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik");
-            Car c2 = new Car(2008, "Renualt","Megane", 200, "Josef"); 
-            Car c3 = new Car(2008, "Fiat","Punto", 10000, "Thor");
+            Car c1 = new Car(2020, "BMW", "X5M", 500000, "Frederik");
+            Car c2 = new Car(2008, "Renualt", "Megane", 200, "Josef");
+            Car c3 = new Car(2008, "Fiat", "Punto", 10000, "Thor");
             em.persist(c1);
             em.persist(c2);
             em.persist(c3);
-            
 
             em.getTransaction().commit();
         } finally {
@@ -65,22 +62,33 @@ public class CarFacadeTest {
 //        Remove any data after each test was run
     }
 
-    
     @Test
     public void testAFacadeMethod() {
         assertEquals(3, cf.getAllCars().size(), "Expects three rows in the database");
     }
-    
+
     @Test
-    public void testGetCarByMake(){
-        List<CarDTO> carList = cf.getCarByMake("BMW"); 
-        Car c1 = new Car(2020, "BMW","X5M", 500000, "Frederik"); 
+    public void testGetCarByMake() {
+        List<CarDTO> carList = cf.getCarByMake("BMW");
+        Car c1 = new Car(2020, "BMW", "X5M", 500000, "Frederik");
         CarDTO expected = new CarDTO(c1);
-        CarDTO car = carList.get(0); 
-        
-        assertEquals(expected.getMake(), car.getMake()); 
-        
+        CarDTO car = carList.get(0);
+
+        assertEquals(expected.getMake(), car.getMake());
+
     }
-    
+
+    @Test
+    public void testGetCarByPrice() {
+        List<CarDTO> carList = cf.getCarByPrice(200);
+        Car c2 = new Car(2008, "Renualt", "Megane", 200, "Josef");
+        CarDTO expected = new CarDTO(c2);
+        CarDTO car = carList.get(0);
+
+        assertEquals(expected.getPrice(), car.getPrice());
+
+    }
+
+   
 
 }
