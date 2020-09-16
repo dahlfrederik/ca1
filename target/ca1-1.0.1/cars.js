@@ -8,7 +8,7 @@ getAllCarsBtn.addEventListener('click', (event) => {
 function fetchAllCars() {
 
     //let url = 'http://localhost:8080/jpareststarter/api/cars/all';
-    let url = 'http://dachma.dk/ca1/api/cars/all';
+    let url = 'https://dachma.dk/ca1/api/cars/all';
     
     makeCarTable(url); 
 }
@@ -22,7 +22,7 @@ getCarsByMakeBtn.addEventListener('click', (event) => {
 
 function fetchCarByMake(make) {
     //let url = 'http://localhost:8080/jpareststarter/api/cars/bymake/' + make;
-    let url = 'http://dachma.dk/ca1//api/cars/bymake/' + make;
+    let url = 'https://dachma.dk/ca1//api/cars/bymake/' + make;
     
     makeCarTable(url);
 }
@@ -49,7 +49,7 @@ getCarsByPriceBtn.addEventListener('click', (event) => {
 
 function fetchCarByPrice(price){
     //let url = 'http://localhost:8080/jpareststarter/api/cars/byprice/' + price;
-    let url = 'http://dachma.dk/ca1//api/cars/byprice/' + price;
+    let url = 'https://dachma.dk/ca1//api/cars/byprice/' + price;
     
     makeCarTable(url);
 }
@@ -63,7 +63,7 @@ sortCarsBtn.addEventListener('click', (event) => {
 
 function sortCars(){
     //let url = 'http://localhost:8080/jpareststarter/api/cars/all';
-    let url = 'http://dachma.dk/ca1/api/cars/all';
+    let url = 'https://dachma.dk/ca1/api/cars/all';
     
    fetch(url)
             .then(res => res.json())
