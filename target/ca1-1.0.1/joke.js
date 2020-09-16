@@ -20,10 +20,9 @@ findJokeBtn.addEventListener('click', (event) => {
     let jokeIDTextInput = document.getElementById("jokeID");
     fetchJokeById(jokeIDTextInput.value);
 });
-
 // Functions
 function fetchAllJokes() {
-    let url = 'http://localhost:8080/jpareststarter/api/joke/all';
+    let url = 'https://dachma.dk/ca1/api/joke/all';
     let allJokes = document.getElementById("allJokes");
 
     fetch(url)
@@ -36,7 +35,7 @@ function fetchAllJokes() {
 }
 
 function fetchJokeById(id) {
-    let url = 'http://localhost:8080/jpareststarter/api/joke/id/' + id;
+    let url = 'https://dachma.dk/ca1/api/joke/id/' + id;
     fetch(url)
             .then(res => res.json()) 
             .then(data => {
@@ -48,7 +47,7 @@ function fetchJokeById(id) {
 
 // fetches a random joke and calls renderObjecToHTML
 function fetchRandomJoke() {
-    let url = 'http://localhost:8080/jpareststarter/api/joke/randomJoke';
+    let url = 'https://dachma.dk/ca1/api/joke/randomJoke';
     fetch(url)
             .then(res => res.json())
             .then(data => {
