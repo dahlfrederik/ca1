@@ -1,11 +1,17 @@
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import dto.CarDTO;
 import entities.Car;
+import facades.CarFacade;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
+import static io.restassured.mapper.ObjectMapperType.GSON;
 import io.restassured.parsing.Parser;
 import java.net.URI;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.UriBuilder;
@@ -14,6 +20,8 @@ import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +39,7 @@ public class CarResourceTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
+    private static CarFacade cf;
 
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
@@ -42,6 +51,7 @@ public class CarResourceTest {
         //This method must be called before you request the EntityManagerFactory
         EMF_Creator.startREST_TestWithDB();
         emf = EMF_Creator.createEntityManagerFactoryForTest();
+        cf = CarFacade.getCarFacade(emf);
 
         httpServer = startServer();
         //Setup RestAssured
@@ -87,13 +97,36 @@ public class CarResourceTest {
 
 
     @Test
-    public void testGetCarBymake() throws Exception {
+    public void testGetCarBymake() throws Exception {      
+        List<CarDTO> carList = cf.getCarByMake("BMW"); 
+        Gson GSON  =new GsonBuilder().setPrettyPrinting().create(); 
+        String car = GSON.toJson(carList); 
+        
         given()
         .contentType("application/json")
         .get("/cars/bymake/BMW").then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("make", equalTo(c1.getMake())); 
-    }
+                .body("size", is(1))
+                .and()
+                .body(equalTo(car)); 
+        }
+    
+    @Test
+    public void testGetCarPrice() throws Exception {      
+        List<CarDTO> carList = cf.getCarByPrice(200); 
+        Gson GSON  =new GsonBuilder().setPrettyPrinting().create(); 
+        String car = GSON.toJson(carList); 
+        
+        given()
+        .contentType("application/json")
+        .get("/cars/byprice/200").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("size", is(1))
+                .and()
+                .body(equalTo(car)); 
+        }
+
 
 }
