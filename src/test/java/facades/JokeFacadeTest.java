@@ -62,17 +62,13 @@ public class JokeFacadeTest {
     public void testJokeCount() {
         assertEquals(2, facade.getJokeCount(), "Expects two rows in the database");
     }
-    
-    
 
-//    @Disabled
-//    @Test
-//        public void testGetJokeById() {
-//        facade.getJokeById(1);
-//        String name = "Kill Bill";
-//        String expResult = "Kill Bill";
-//        String result = facade.getJokeById(1).
-//
-//        assertEquals(expResult, result);
-//    }
+    @Disabled
+    @Test
+    public void testGetJokeById() {
+        facade.getJokeById(1);
+        String expResult = "En sjov joke";
+        String result = facade.getJokeById(1).getTheJoke();
+        assertEquals(expResult, result);
+    }
 }

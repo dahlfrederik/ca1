@@ -20,11 +20,12 @@ findJokeBtn.addEventListener('click', (event) => {
     let jokeIDTextInput = document.getElementById("jokeID");
     fetchJokeById(jokeIDTextInput.value);
 });
+
+
 // Functions
 function fetchAllJokes() {
     let url = 'https://dachma.dk/ca1/api/joke/all';
     let allJokes = document.getElementById("allJokes");
-
     fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -37,11 +38,18 @@ function fetchAllJokes() {
 function fetchJokeById(id) {
     let url = 'https://dachma.dk/ca1/api/joke/id/' + id;
     fetch(url)
-            .then(res => res.json()) 
-            .then(data => {
-                let allJokes = document.getElementById("allJokes");
-                allJokes.innerHTML = renderObjectToHTML(data);
-            });
+            .then(res => {
+                if (res.ok) {
+                    res.json()
+                            .then(data => {
+                                let allJokes = document.getElementById("allJokes");
+                                allJokes.innerHTML = renderObjectToHTML(data);
+                            })
+                } else {
+                    alert("Please input a valid ID");
+                    console.log("Error")
+                }
+            })
 }
 
 
@@ -53,12 +61,10 @@ function fetchRandomJoke() {
             .then(data => {
                 let allJokes = document.getElementById("allJokes");
                 allJokes.innerHTML = renderObjectToHTML(data);
-            });
+            })
 }
 
 function renderObjectToHTML(x) {
     result = `<tr><td>${x.theJoke}</td><td>${x.reference}</td><td>${x.type}</td></tr>`
     return result;
 }
-
-

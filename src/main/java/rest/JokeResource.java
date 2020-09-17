@@ -25,6 +25,7 @@ public class JokeResource {
     private static final JokeFacade FACADE = JokeFacade.getJokeFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
@@ -33,7 +34,10 @@ public class JokeResource {
         try {
             List<JokeDTO> jokes = FACADE.getAllJoke();
             return GSON.toJson(jokes);
-        } finally {
+        }catch(javax.persistence.NoResultException e) {
+            String errorMsg = "This function is not working";
+            return GSON.toJson(errorMsg);
+        }finally {
             em.close();
         }
     }
@@ -46,7 +50,10 @@ public class JokeResource {
         try {
             Joke joke = FACADE.getJokeById(id);
             return GSON.toJson(joke);
-        } finally {
+        }catch(javax.persistence.NoResultException e) {
+            String errorMsg = "No joke with that ID " + id;
+            return GSON.toJson(errorMsg);
+        }finally {
             em.close();
         }
     }
