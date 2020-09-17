@@ -1,0 +1,4 @@
+
+target/classes/facades/JokeFacade.class
+target/classes/rest/ApplicationConfig.class
+target/classes/rest/JokeResource.class
