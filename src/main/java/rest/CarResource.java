@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package rest;
 
 import com.google.gson.Gson;
@@ -19,8 +15,9 @@ import javax.ws.rs.core.MediaType;
 import utils.EMF_Creator;
 
 /**
- *
+ * A REST class to create REST endpoints for the car part of the assingment. 
  * @author Frederik Dahl <cph-fd76@cphbusiness.dk>
+ * First path is what you will have to type behind the "https://nameofthewebsite/cars 
  */
 @Path("cars")
 public class CarResource {
@@ -32,6 +29,11 @@ public class CarResource {
     private static final CarFacade cf = CarFacade.getCarFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Method that returns all cars in database
+     * @return a list of CarDTO objects 
+     * Can be accessed at https://nameofthewebsite/cars/all 
+     */ 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("all")
@@ -45,6 +47,12 @@ public class CarResource {
         }
     }
 
+    /**
+     * Method that shows all cars by make
+     * @param make of the car youre searching for 
+     * @return a list of cars with the given make
+     * Can be accessed at https://nameofthewebsite/cars/bymake/makeYoureSearchingFor (eg BMW)  
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("bymake/{make}")
@@ -59,6 +67,12 @@ public class CarResource {
         }
     }
     
+    /**
+     * Method to find cars with a given price 
+     * @param price price youre searching for
+     * @return a list of cars with a price less than or equal to the param 
+     * Can be accessed at https://nameofthewebsite/cars/byprice/priceYoureSearchingFor
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("byprice/{price}")
@@ -72,11 +86,20 @@ public class CarResource {
         }
     }
 
+    /**
+     * @return a String to tell that everything went all right or throws an exception. 
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("populate")
     public String populateDB() {
+        try{
         cf.populateDB();
         return "{\"msg\":\"3 cars added\"}";
+        } catch (Exception e) {
+            String errorString = "The populate method could not be run. Nothing has been inserted into the database";
+            return GSON.toJson(errorString);
+        }
     }
+    
 }

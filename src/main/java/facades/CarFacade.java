@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package facades;
 
 import dto.CarDTO;
 import entities.Car;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * The CarFacade class is the class in charge of all operations with the database. 
+ * Here we use the namedqueries created in the entity class Car.java
  * @author Frederik Dahl <cph-fd76@cphbusiness.dk>
  */
 public class CarFacade {
@@ -33,8 +24,8 @@ public class CarFacade {
     }
 
     /**
-     *
-     * @param _emf
+     * Method to get an instance of the carfacade class (aka this class). 
+     * @param _emf an entityManagerFactory which is used for using the entity classes and doing Database operations from these. 
      * @return an instance of this facade class.
      */
     public static CarFacade getCarFacade(EntityManagerFactory _emf) {
@@ -49,6 +40,9 @@ public class CarFacade {
         return emf.createEntityManager();
     }
 
+    /**
+     * Calls the namedquery from car entity class and removes all data in databases. 
+     */
     public void deleteAllCars() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -60,6 +54,10 @@ public class CarFacade {
         }
     }
 
+    /**
+     * Calls the namedquery from car entity class and gets all data in databases. 
+     * @return a list of CarDTO objects, carDTO will hide "sensitive" information on the website. 
+     */
     public List<CarDTO> getAllCars() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -78,7 +76,12 @@ public class CarFacade {
         }
     }
     
-     public List<CarDTO> getCarByMake(String make) {
+    /**
+     * Method to find cars by a specific make (eg BMW). 
+     * @param make the make that you're searching for 
+     * @return a list of CarDTO objects that has something like the make you're searching for. 
+     */
+    public List<CarDTO> getCarByMake(String make) {
         EntityManager em = emf.createEntityManager();
         try {
             Query query = em.createNamedQuery("Car.getCarByMake");
@@ -95,6 +98,11 @@ public class CarFacade {
         }
     }
      
+    /**
+     * Calls the namedquery from car entity class and finds every car with a price lower than or equal (ltoe) to the param. 
+     * @param price , the price you want to find cars for, ltoe with the param. 
+     * @return the list of cars with a pricer ltoe with the param. 
+     */
     public List<CarDTO> getCarByPrice(int price) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -112,6 +120,9 @@ public class CarFacade {
         }
     }  
      
+    /**
+     * Method to insert data into the database.
+     */
     public void populateDB(){
             EntityManager em = emf.createEntityManager();
         try {

@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +15,11 @@ import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
+
+/**
+ * Test class for the CarFacade 
+ * @author FrederikDahl
+ */
 public class CarFacadeTest {
 
     private static EntityManagerFactory emf;
@@ -24,20 +28,26 @@ public class CarFacadeTest {
     public CarFacadeTest() {
     }
 
+    /**
+     * creates new instances of the objects pre test run
+     */
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactoryForTest();
         cf = CarFacade.getCarFacade(emf);
     }
 
+    /**
+     * Supposed to clean up after the tests, but does nothing. 
+     */
     @AfterAll
     public static void tearDownClass() {
 //        Clean up database after test is done or use a persistence unit with drop-and-create to start up clean on every test
     }
 
-    //int year, String make, String model, int price, String owner
-    // Setup the DataBase in a known state BEFORE EACH TEST
-    //TODO -- Make sure to change the script below to use YOUR OWN entity class
+     /**
+     * Cleans and empties the test database pre everytest run and inserts data into it. 
+     */
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
@@ -57,16 +67,26 @@ public class CarFacadeTest {
         }
     }
 
+    /**
+     * this is actually done in the before part. 
+     * Could actually be deleted, but we're using the startcode so will keep it. 
+     */
     @AfterEach
     public void tearDown() {
 //        Remove any data after each test was run
     }
 
+    /**
+     * Test that the getAllCarsMethod works 
+     */
     @Test
-    public void testAFacadeMethod() {
+    public void testGetAllCars() {
         assertEquals(3, cf.getAllCars().size(), "Expects three rows in the database");
     }
 
+    /**
+     * Test that the getCarByMake works as intented 
+     */
     @Test
     public void testGetCarByMake() {
         List<CarDTO> carList = cf.getCarByMake("BMW");
@@ -78,6 +98,9 @@ public class CarFacadeTest {
 
     }
 
+    /**
+     * Test that the getCarByPrice works as intented 
+     */
     @Test
     public void testGetCarByPrice() {
         List<CarDTO> carList = cf.getCarByPrice(200);
