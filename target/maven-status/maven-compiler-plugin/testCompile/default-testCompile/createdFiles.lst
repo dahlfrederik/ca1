@@ -1,6 +1,6 @@
-facades/JokeFacadeTest.class
-facades/MembersFacadeTest.class
-rest/JokeResourceTest.class
-rest/MembersResourceTest.class
-rest/CarResourceTest.class
-facades/CarFacadeTest.class
+rest\CarResourceTest.class
+facades\CarFacadeTest.class
+rest\MembersResourceTest.class
+facades\MembersFacadeTest.class
+rest\JokeResourceTest.class
+facades\JokeFacadeTest.class
