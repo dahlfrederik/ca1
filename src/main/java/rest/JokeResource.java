@@ -19,13 +19,13 @@ import javax.ws.rs.core.MediaType;
 public class JokeResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-    
+
     //An alternative way to get the EntityManagerFactory, whithout having to type the details all over the code
     //EMF = EMF_Creator.createEntityManagerFactory(DbSelector.DEV, Strategy.CREATE);
-    
-    private static final JokeFacade FACADE =  JokeFacade.getJokeFacade(EMF);
+    private static final JokeFacade FACADE = JokeFacade.getJokeFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-            
+
+    
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
@@ -34,11 +34,14 @@ public class JokeResource {
         try {
             List<JokeDTO> jokes = FACADE.getAllJoke();
             return GSON.toJson(jokes);
-        } finally {
+        }catch(javax.persistence.NoResultException e) {
+            String errorMsg = "This function is not working";
+            return GSON.toJson(errorMsg);
+        }finally {
             em.close();
         }
     }
-    
+
     @GET
     @Path("id/{id}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -47,19 +50,22 @@ public class JokeResource {
         try {
             Joke joke = FACADE.getJokeById(id);
             return GSON.toJson(joke);
-        } finally {
+        }catch(javax.persistence.NoResultException e) {
+            String errorMsg = "No joke with that ID " + id;
+            return GSON.toJson(errorMsg);
+        }finally {
             em.close();
         }
     }
-    
+
     @GET
     @Path("/populate")
     @Produces({MediaType.APPLICATION_JSON})
     public String populate() {
         FACADE.populateDB();
-        return "{\"msg\":\"2 rows added\"}";
+        return "{\"msg\":\"Jokes Added!\"}";
     }
-    
+
     @GET
     @Path("/unpopulate")
     @Produces({MediaType.APPLICATION_JSON})
@@ -67,7 +73,18 @@ public class JokeResource {
         FACADE.deleteAllJokes();
         return "{\"msg\":\"All jokes removed\"}";
     }
-    
-    
-    
+
+    @GET
+    @Path("/randomJoke")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getRandomJoke() {
+        EntityManager em = EMF.createEntityManager();
+        try {
+            Joke randomJoke;
+            randomJoke = FACADE.getRandomJoke();
+            return GSON.toJson(randomJoke);
+        } finally {
+            em.close();
+        }
+    }
 }

@@ -2,10 +2,10 @@ package facades;
 
 import dto.JokeDTO;
 import entities.Joke;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -42,8 +42,8 @@ public class JokeFacade {
     public long getJokeCount() {
         EntityManager em = emf.createEntityManager();
         try {
-            long renameMeCount = (long) em.createQuery("SELECT COUNT(j) FROM Joke j").getSingleResult();
-            return renameMeCount;
+            long jokeCount = (long) em.createQuery("SELECT COUNT(j) FROM Joke j").getSingleResult();
+            return jokeCount;
         } finally {
             em.close();
         }
@@ -60,19 +60,18 @@ public class JokeFacade {
         }
     }
 
-    public Joke getJokeById(Long id) {
+    public Joke getJokeById(long id) {
         EntityManager em = emf.createEntityManager();
         try {
             Query query = em.createNamedQuery("Joke.getJokeById");
             query.setParameter("id", id);
-            Joke joke = (Joke) query.getSingleResult();
-            return joke;
+            return (Joke) query.getSingleResult();
         } finally {
             em.close();
         }
     }
-    
-    public void deleteAllJokes(){
+
+    public void deleteAllJokes() {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -82,17 +81,34 @@ public class JokeFacade {
             em.close();
         }
     }
-    
-    public void populateDB(){
-            EntityManager em = emf.createEntityManager();
+
+    public Joke getRandomJoke() {
+        EntityManager em = emf.createEntityManager();
         try {
-            em.getTransaction().begin();
-            em.persist(new Joke("En sjov joke", "person", "Sjovt"));
-            em.persist(new Joke("En anden sjov joke", "Sjov person", "Sjovt"));
-            em.getTransaction().commit();
+            JokeFacade JF = new JokeFacade();
+            Joke randomJoke;
+            List jokes = JF.getAllJoke();
+            int randomNr = (int) (Math.random() * jokes.size());
+            randomJoke = (Joke) jokes.get(randomNr);
+            return randomJoke;
         } finally {
             em.close();
         }
     }
 
+    public void populateDB() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(new Joke("Hvorfor var blondinen glad for, at samle et puzzlespil på 6 måneder?"
+                    + "– fordi der stod 2-4 år", "vitser-jokes.dk", "Blondie Jokes"));
+            em.persist(new Joke("Hvad Kalder man en blondine med en hjerne?" + "– Uddød"
+                    + "", "vitser-jokes.dk", "Blondie Jokes"));
+            em.persist(new Joke("Hvorfor lever kvinder længer end mænd?" + "– Fordi de lige skal tale færdig"
+                    + "", "vitser-jokes.dk", "Kvinde Jokes"));
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
 }
