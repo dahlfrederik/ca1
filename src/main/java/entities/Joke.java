@@ -9,14 +9,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
+ * A joke entity class
  *
- * @author josef
+ * @author Josef The entity class has namedQueries used by methods in the JokeFacade
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Joke.deleteAllRows", query = "DELETE from Joke"),
-@NamedQuery(name = "Joke.getAll", query = "SELECT j FROM Joke j"),
-@NamedQuery(name = "Joke.getJokeById", query = "SELECT j FROM Joke j WHERE j.id LIKE :id")
+    @NamedQuery(name = "Joke.deleteAllRows", query = "DELETE from Joke"),
+    @NamedQuery(name = "Joke.getAll", query = "SELECT j FROM Joke j"),
+    @NamedQuery(name = "Joke.getJokeById", query = "SELECT j FROM Joke j WHERE j.id LIKE :id")
 })
 public class Joke implements Serializable {
 
@@ -28,6 +29,13 @@ public class Joke implements Serializable {
     private String reference;
     private String type;
 
+    /**
+     * Joke Constructor
+     *
+     * @param theJoke The acutal joke
+     * @param reference Who made the joke
+     * @param type What type of joke it is
+     */
     public Joke(String theJoke, String reference, String type) {
         this.theJoke = theJoke;
         this.reference = reference;
@@ -36,7 +44,7 @@ public class Joke implements Serializable {
 
     public Joke() {
     }
-    
+
     public Long getId() {
         return id;
     }

@@ -3,14 +3,19 @@ package dto;
 import entities.Joke;
 
 /**
- *
- * @author josef
+ * JokeDTO class is a "wrapper" class to store Joke objects.
+ * @author Josef
  */
 public class JokeDTO {
     
     private String theJoke;
     private String reference;
     private String type;
+    
+    /**
+     * A JokeDTO Object has 3 global variables: theJoke, reference, type. 
+     * @param Joke
+     */
 
     public JokeDTO(Joke joke) {
         this.theJoke = joke.getTheJoke();

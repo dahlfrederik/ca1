@@ -15,6 +15,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * A REST class to create REST endpoints for the joke part of the assingment. 
+ * @author Josef
+ */
+
 @Path("joke")
 public class JokeResource {
 
@@ -25,7 +30,11 @@ public class JokeResource {
     private static final JokeFacade FACADE = JokeFacade.getJokeFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    
+    /**
+     * Method that returns all JokeDTO from DB
+     *
+     * @return a list of JokeDTO objects Access at https://dachma.dk/ca1/api/joke/all
+     */
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
@@ -34,14 +43,19 @@ public class JokeResource {
         try {
             List<JokeDTO> jokes = FACADE.getAllJoke();
             return GSON.toJson(jokes);
-        }catch(javax.persistence.NoResultException e) {
+        } catch (javax.persistence.NoResultException e) {
             String errorMsg = "This function is not working";
             return GSON.toJson(errorMsg);
-        }finally {
+        } finally {
             em.close();
         }
     }
 
+    /**
+     * Method that returns a specific Joke object from DB
+     *
+     * @return a Joke object Access at https://dachma.dk/ca1/api/joke/id/INSERT-ID
+     */
     @GET
     @Path("id/{id}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -50,14 +64,19 @@ public class JokeResource {
         try {
             Joke joke = FACADE.getJokeById(id);
             return GSON.toJson(joke);
-        }catch(javax.persistence.NoResultException e) {
+        } catch (javax.persistence.NoResultException e) {
             String errorMsg = "No joke with that ID " + id;
             return GSON.toJson(errorMsg);
-        }finally {
+        } finally {
             em.close();
         }
     }
 
+    /**
+     * Method to populate the DB with some hardcoded jokes
+     *
+     * @return void Access at https://dachma.dk/ca1/api/joke/populate
+     */
     @GET
     @Path("/populate")
     @Produces({MediaType.APPLICATION_JSON})
@@ -66,6 +85,11 @@ public class JokeResource {
         return "{\"msg\":\"Jokes Added!\"}";
     }
 
+    /**
+     * Method to delete all Jokes from the DB
+     *
+     * @return void Access at https://dachma.dk/ca1/api/joke/unpopulate
+     */
     @GET
     @Path("/unpopulate")
     @Produces({MediaType.APPLICATION_JSON})
@@ -74,6 +98,12 @@ public class JokeResource {
         return "{\"msg\":\"All jokes removed\"}";
     }
 
+    /**
+     * Method to get a random Joke from the DB
+     *
+     * @return a Joke object picked randomly from Math.random
+     * Access at https://dachma.dk/ca1/api/joke/randomJoke
+     */
     @GET
     @Path("/randomJoke")
     @Produces({MediaType.APPLICATION_JSON})

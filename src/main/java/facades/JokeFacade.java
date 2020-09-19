@@ -10,8 +10,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * Rename Class to a relevant name Add add relevant facade methods
+ * The JokeFacade class is the class in charge of all operations with the database. 
+ * Here we use the namedqueries created in the entity class Joke.java
+ * @author Josef
  */
 public class JokeFacade {
 
@@ -39,6 +40,11 @@ public class JokeFacade {
         return emf.createEntityManager();
     }
 
+    /**
+     * Method to get total amount of jokes in the DB
+     *
+     * @return a Long type number with the amount.
+     */
     public long getJokeCount() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -49,6 +55,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Method to get all Jokes from the DB into a list
+     *
+     * @return a List type with JokeDTO objects.
+     */
     public List<JokeDTO> getAllJoke() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -60,6 +71,12 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Method to find a Joke from DB by ID
+     *
+     * @param id the id of the specific Joke object
+     * @return a Joke object
+     */
     public Joke getJokeById(long id) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -71,6 +88,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Method to delete all Jokes from the DB
+     *
+     * @return void
+     */
     public void deleteAllJokes() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -82,6 +104,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Method to get a random Joke from the DB
+     *
+     * @return a Joke object picked randomly from Math.random
+     */
     public Joke getRandomJoke() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -96,6 +123,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Method to populate the DB with some hardcoded jokes
+     *
+     * @return void
+     */
     public void populateDB() {
         EntityManager em = emf.createEntityManager();
         try {
