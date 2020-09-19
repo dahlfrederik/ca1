@@ -9,6 +9,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+/**
+ * The MembersFacade class is containing all this done with and to the database. 
+ * @author Thor Christensen
+ */
+
 public class MembersFacade {
 
     private static MembersFacade instance;
@@ -17,7 +22,7 @@ public class MembersFacade {
     //Private Constructor to ensure Singleton
     private MembersFacade() {}
     
-    
+    //A get method to get an instance of the MemberFacade class 
     public static MembersFacade getFacadeExample(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
@@ -30,6 +35,8 @@ public class MembersFacade {
         return emf.createEntityManager();
     }
     
+    //Calls namedquery from the entity class to get a member by ID
+    //This isnt used on the live page, but could be used for future features
         public MembersDTO getMemberById(long id) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -43,6 +50,8 @@ public class MembersFacade {
         }
     }
         
+    //Calls namedquery from the entity class to get a member by name
+    //This isnt used on the live page, but could be used for future features
     public MembersDTO getMemberByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -56,6 +65,7 @@ public class MembersFacade {
         }
     }
     
+    //Calls namedquery from the entity class to get all members
         public List<MembersDTO> getAllMembers() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -73,6 +83,7 @@ public class MembersFacade {
         }
     }
         
+    //Method used to populate the database with members
     public void populateDB() {
         EntityManager em = emf.createEntityManager();
         try {

@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+/**
+ * The member entity class containing all information about member-objects. 
+ * @author Thor Christensen
+ */
 
 @Entity
 @NamedQueries({

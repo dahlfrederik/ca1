@@ -14,7 +14,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-//Todo Remove or change relevant parts before ACTUAL use
+/**
+ * A REST class to create REST endpoints for the member part of the assingment. 
+ * @author Thor Christensen
+ */
+
 @Path("groupmembers")
 public class MemberResource {
 
@@ -25,7 +29,8 @@ public class MemberResource {
     
     private static final MembersFacade FACADE =  MembersFacade.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-            
+    
+    //Method used to return all members from database i form of JSON
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
@@ -40,6 +45,7 @@ public class MemberResource {
         }
     }
     
+    //Method used to return member by id from database i form of JSON
     @GET
     @Path("id/{id}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -54,6 +60,8 @@ public class MemberResource {
         }
     }
     
+    
+    //Method used to return member by name from database i form of JSON
     @Path("name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -68,6 +76,7 @@ public class MemberResource {
         }
     }
     
+    //Method used to populate the database with members
     @GET
     @Path("/populate")
     @Produces({MediaType.APPLICATION_JSON})
